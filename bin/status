@@ -1,0 +1,6 @@
+#!/bin/bash
+
+USER=ubuntu
+SERVER=172.23.57.181
+
+ssh $USER@$SERVER -t "tmux list-sessions -F '#{session_name}'"

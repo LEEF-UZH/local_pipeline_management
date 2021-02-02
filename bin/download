@@ -1,0 +1,19 @@
+#!/bin/bash
+
+FROM=/mnt/leef_data/LEEF/$1
+USER=ubuntu
+SERVER=172.23.57.181
+TO=./$1
+
+echo
+echo FROM DIR: $FROM
+echo USER    : ubuntu
+echo SERVER  : 172.23.57.181
+echo COMPETE : $USER@$SERVER:$FROM
+echo TO DIR  : $TO
+echo 
+
+mkdir -p $TO
+
+rsync --verbose --archive --recursive --compress --info=progress2 -e ssh ubuntu@leef_pipeline:$FROM/ $TO/
+  
