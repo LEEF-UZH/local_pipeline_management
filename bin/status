@@ -1,6 +1,39 @@
 #!/bin/bash
 
-USER=ubuntu
-SERVER=172.23.57.181
+usage="
+Usage: `basename $0` [options]
 
-ssh $USER@$SERVER -t "tmux list-sessions -F '#{session_name}'"
+Displays status information about the pipeline.
+The script checks, if a tmux session named 'pipeline_running'
+is active.
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+
+echo
+echo Pipeline Sever is at $SERVER
+echo
+
+pipelines=$(ssh $USER@$SERVER -t "tmux list-sessions -F '#{session_name}'")
+
+if [[ $pipelines == *"pipeline_running"* ]]; then
+	echo
+  echo "Active"
+	echo
+else
+	echo
+  echo "Not Active"
+	echo
+fi

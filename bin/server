@@ -1,0 +1,21 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options]
+       
+Returns the pipeline server IP. All scripts ude this function to obtain te server IP, 
+wherefore only here a new server IP needs to be specified
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+echo 172.23.57.181

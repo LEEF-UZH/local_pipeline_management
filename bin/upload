@@ -1,0 +1,45 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options] source_directory target_directory
+       `basename $0` [options] source_file target_directory
+       
+Upload data from 'source' to the target_directory on the pipeline server.
+
+Depending on if a directory or a file is specified, the behaviour differs slightly:
+
+source_directory target_directory: Copies the source_directory into the target_directory
+source_file target_directory     : Copies the source_file into the target_directory
+source_file target_file					 : Copies the source_file over the target_file
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+FROM=./$1
+TO=/mnt/leef_data/Incoming/$2
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+
+echo
+echo Pipeline Sever is at $SERVER
+echo
+
+echo
+echo FROM DIR: $FROM
+echo USER    : ubuntu
+echo SERVER  : 172.23.57.181
+echo COMPETE : $USER@$SERVER:$FROM
+echo TO DIR  : $TO
+echo 
+
+rsync --verbose --archive --recursive --compress --info=progress2 -e ssh $FROM ubuntu@leef_pipeline:$TO
+  

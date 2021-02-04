@@ -1,9 +1,33 @@
 #!/bin/bash
 
-FROM=/mnt/leef_data/LEEF/$1
+usage="
+Usage: `basename $0` [options] source target_directory
+       
+Download the 'source' directory or file on the pipeline server
+to the target_directory. 
+The target_directory will be created if it does not exist.
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+FROM=/mnt/leef_data/$1
+TO=./$2
+
 USER=ubuntu
-SERVER=172.23.57.181
-TO=./$1
+SERVER=$($(dirname "$0")/server)
+
+echo
+echo Pipeline Sever is at $SERVER
+echo
 
 echo
 echo FROM DIR: $FROM
@@ -12,6 +36,9 @@ echo SERVER  : 172.23.57.181
 echo COMPETE : $USER@$SERVER:$FROM
 echo TO DIR  : $TO
 echo 
+
+############
+############
 
 mkdir -p $TO
 

@@ -1,0 +1,62 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options]
+
+Clean the pipeline to prepare it for new input data.
+This will *delete* the following folders in the LEEF folder:
+
+	- 00.general.data
+	- 0.raw.data
+	- 1.pre-processed.data
+	- 2.extracted.data
+	
+Options:
+  -h, --help            Print short help message and exit
+
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+
+echo
+echo Pipeline Sever is at $SERVER
+echo
+
+echo "
+This will *delete* the following folders in the LEEF folder:
+
+	- 00.general.data
+	- 0.raw.data
+	- 1.pre-processed.data
+	- 2.extracted.data
+
+on the pipeline server in the LEEF folder.
+"
+read -r -p "Are You Sure you want to delete these directories? Type DELETE to confirm " input
+echo $input
+
+case $input in
+	DELETE)
+ 		# ssh $USER@$SERVER -t "rm -rf ./../LEEF/00.general.data ./../0.raw.data ./../1.pre-processed.data ./../2.extracted.data"
+ 	;;
+  [nN][oO]|[nN])
+ 		echo "Aborted - nothing deleted"
+ 		exit
+  ;;
+  *)
+ 		echo "Invalid input..."
+ 		exit 1
+ 	;;
+esac
+
+
+

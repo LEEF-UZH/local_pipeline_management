@@ -1,6 +1,49 @@
 #!/bin/bash
 
-USER=ubuntu
-SERVER=172.23.57.181
+usage="
+Usage: `basename $0` [options] pipeline
 
-ssh $USER@$SERVER -t "tmux new-session -d -s pipeline_running 'cd docker;./run.pipeline.sh'"
+Start the pipeline on the pipeline server.
+It needs one parameter, specifying the pipeline to start.
+
+Options:
+  -h, --help            Print short help message and exit
+
+Allowed values for 'pipeline' are:
+   fast  : start the pipeline for flowcam, flowcytometer,
+           o2meter and manual count.
+   bemovi: start the pipeline for bemovi
+   all   : start all pipelines, equivalent to first running 'fast''
+           and than 'bemovi'.
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+
+echo
+echo Pipeline Sever is at $SERVER
+echo
+
+case $1 in
+    all)
+        ssh $USER@$SERVER -t "tmux new-session -d -s pipeline_running 'cd docker;./run.pipeline.sh'"
+        ;;
+    fast)
+        ssh $USER@$SERVER -t "tmux new-session -d -s pipeline_running 'cd docker;./run.fast.pipeline.sh'"
+        ;;
+    bemovi)
+        ssh $USER@$SERVER -t "tmux new-session -d -s pipeline_running 'cd docker;./run.bemovi.pipeline.sh'"
+        ;;
+    *)
+    		echo "Missing or not supported parameter."
+    		echo "call 'start -h' or 'start --help' to see details"
+    		;;
+esac
