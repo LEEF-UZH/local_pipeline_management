@@ -7,6 +7,8 @@ Download the 'source' directory or file on the pipeline server
 to the target_directory. 
 The target_directory will be created if it does not exist.
 
+The transfer is done by using 'rsync'.
+
 Options:
   -h, --help            Print short help message and exit
 "
@@ -20,7 +22,7 @@ fi
 ############
 
 FROM=/mnt/leef_data/$1
-TO=./$2
+TO=$2
 
 USER=ubuntu
 SERVER=$($(dirname "$0")/server)
@@ -42,5 +44,7 @@ echo
 
 mkdir -p $TO
 
-rsync --verbose --archive --recursive --compress --info=progress2 -e ssh ubuntu@leef_pipeline:$FROM/ $TO/
+rsync --verbose --archive --recursive --compress --info=progress2 -e ssh \
+	ubuntu@leef_pipeline:$FROM \
+	$TO/
   

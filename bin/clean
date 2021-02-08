@@ -46,7 +46,7 @@ echo $input
 
 case $input in
 	DELETE)
- 		# ssh $USER@$SERVER -t "rm -rf ./../LEEF/00.general.data ./../0.raw.data ./../1.pre-processed.data ./../2.extracted.data"
+ 		ssh $USER@$SERVER -t "rm -rf ./LEEF/00.general.data ./LEEF/0.raw.data ./LEEF/1.pre-processed.data ./LEEF/2.extracted.data"
  	;;
   [nN][oO]|[nN])
  		echo "Aborted - nothing deleted"
