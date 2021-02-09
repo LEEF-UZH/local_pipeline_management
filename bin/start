@@ -32,6 +32,7 @@ echo
 echo Pipeline Sever is at $SERVER
 echo
 
+
 case $1 in
     all)
         ssh $USER@$SERVER -t "tmux new-session -d -s pipeline_running 'cd docker;./run.pipeline.sh'"

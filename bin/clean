@@ -34,10 +34,10 @@ echo
 echo "
 This will *delete* the following folders in the LEEF folder:
 
-	- 00.general.data
-	- 0.raw.data
-	- 1.pre-processed.data
-	- 2.extracted.data
+	- LEEF/00.general.parameter
+	- LEEF/0.raw.data
+	- LEEF/1.pre-processed.data
+	- LEEF/2.extracted.data
 
 on the pipeline server in the LEEF folder.
 "
@@ -46,7 +46,7 @@ echo $input
 
 case $input in
 	DELETE)
- 		ssh $USER@$SERVER -t "rm -rf ./LEEF/00.general.data ./LEEF/0.raw.data ./LEEF/1.pre-processed.data ./LEEF/2.extracted.data"
+ 		ssh $USER@$SERVER -t "rm -rf ./LEEF/00.general.parameter ./LEEF/0.raw.data ./LEEF/1.pre-processed.data ./LEEF/2.extracted.data"
  	;;
   [nN][oO]|[nN])
  		echo "Aborted - nothing deleted"

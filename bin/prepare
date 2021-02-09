@@ -1,0 +1,75 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options] from
+
+Prepare the pipeline by populating the LEEF folder
+with the data in the folder 'Income/from'.
+
+The command 'clean' will be run to *delete* the following folders in the LEEF folder:
+
+	- 00.general.data
+	- 0.raw.data
+	- 1.pre-processed.data
+	- 2.extracted.data
+	
+Options:
+  -h, --help            Print short help message and exit
+
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+echo "
+This will *delete* the following folders in the LEEF folder:
+
+	- LEEF/00.general.data
+	- LEEF/0.raw.data
+	- LEEF/1.pre-processed.data
+	- LEEF/2.extracted.data
+
+on the pipeline server in the LEEF folder.
+"
+$($(dirname "$0")/clean)
+
+FROM=$1
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+
+echo
+echo Pipeline Sever is at $SERVER
+echo
+
+echo "
+The following folders will be moved in the LEEF folder:
+
+	- Incoming/$FROM/00.general.parameter
+	- Incoming/$FROM/0.raw.data
+
+on the pipeline server in the LEEF folder.
+"
+read -r -p "Are You Sure you want to move these directories? Type MOVE to confirm " input
+echo $input
+
+case $input in
+	MOVE)
+ 		ssh $USER@$SERVER -t "mv -f ./Incoming/$FROM/00.general.parameter ./Incoming/$FROM/0.raw.data ./LEEF/"
+ 	;;
+  [nN][oO]|[nN])
+ 		echo "Aborted - nothing moved"
+ 		exit
+  ;;
+  *)
+ 		echo "Invalid input..."
+ 		exit 1
+ 	;;
+esac
+
+
+
