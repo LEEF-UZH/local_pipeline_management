@@ -32,11 +32,11 @@ echo Pipeline Sever is at $SERVER
 echo
 
 echo
-echo FROM DIR: $FROM
-echo USER    : ubuntu
-echo SERVER  : 172.23.57.181
-echo COMPETE : $USER@$SERVER:$FROM
-echo TO DIR  : $TO
+echo "FROM DIR : $FROM"
+echo "USER     : ubuntu"
+echo "SERVER   : $SERVER"
+echo "COMLPETE : $USER@$SERVER:$FROM"
+echo "TO DIR  : $TO"
 echo 
 
 ############
