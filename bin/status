@@ -23,8 +23,10 @@ USER=ubuntu
 SERVER=$($(dirname "$0")/server)
 
 echo
-echo Pipeline Sever is at $SERVER
-echo
+echo "USER     : ubuntu"
+echo "SERVER   : $SERVER"
+echo "COMLPETE : $USER@$SERVER"
+echo 
 
 pipelines=$(ssh $USER@$SERVER -t "tmux list-sessions -F '#{session_name}'")
 

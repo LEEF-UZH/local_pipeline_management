@@ -28,15 +28,11 @@ USER=ubuntu
 SERVER=$($(dirname "$0")/server)
 
 echo
-echo Pipeline Sever is at $SERVER
-echo
-
-echo
 echo "FROM DIR : $FROM"
 echo "USER     : ubuntu"
 echo "SERVER   : $SERVER"
 echo "COMLPETE : $USER@$SERVER:$FROM"
-echo "TO DIR  : $TO"
+echo "TO DIR   : $TO"
 echo 
 
 ############
@@ -45,6 +41,6 @@ echo
 mkdir -p $TO
 
 rsync --verbose --archive --recursive --compress --info=progress2 -e ssh \
-	ubuntu@leef_pipeline:$FROM \
+	$USER@$SERVER:$FROM \
 	$TO/
   

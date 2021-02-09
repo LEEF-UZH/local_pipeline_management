@@ -28,8 +28,10 @@ USER=ubuntu
 SERVER=$($(dirname "$0")/server)
 
 echo
-echo Pipeline Sever is at $SERVER
-echo
+echo "USER     : ubuntu"
+echo "SERVER   : $SERVER"
+echo "COMLPETE : $USER@$SERVER"
+echo 
 
 echo "
 This will *delete* the following folders in the LEEF folder:

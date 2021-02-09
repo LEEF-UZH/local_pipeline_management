@@ -43,8 +43,11 @@ USER=ubuntu
 SERVER=$($(dirname "$0")/server)
 
 echo
-echo Pipeline Sever is at $SERVER
-echo
+echo "FROM DIR : $FROM"
+echo "USER     : ubuntu"
+echo "SERVER   : $SERVER"
+echo "COMLPETE : $USER@$SERVER:$FROM"
+echo 
 
 echo "
 The following folders will be moved in the LEEF folder:
