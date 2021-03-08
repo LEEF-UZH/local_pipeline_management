@@ -3,8 +3,9 @@
 usage="
 Usage: `basename $0` [options] source target_directory
        
-Download the 'source' directory or file on the pipeline server
-to the target_directory. 
+Download the 'source' directory or file from within the 'LEEF' directory on the 
+pipeline server target_directory.
+ 
 The target_directory will be created if it does not exist.
 
 The transfer is done by using 'rsync'.
@@ -21,7 +22,7 @@ fi
 ############
 ############
 
-FROM=/mnt/leef_data/$1
+FROM=/mnt/leef_data/LEEF/$1
 TO=$2
 
 USER=ubuntu

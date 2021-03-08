@@ -4,13 +4,15 @@ usage="
 Usage: `basename $0` [options] source_directory target_directory
        `basename $0` [options] source_file target_directory
        
-Upload data from 'source' to the target_directory on the pipeline server.
+Upload data from 'source' to the target_directory on the pipeline server in the 'Incoming' 
+directory.
 
-Depending on if a directory or a file is specified, the behaviour differs slightly:
+Depending on if a directory or a file is specifiedas source or target, the behaviour 
+differs slightly:
 
 source_directory target_directory: Copies the source_directory into the target_directory
 source_file target_directory     : Copies the source_file into the target_directory
-source_file target_file					 : Copies the source_file over the target_file
+source_file target_file          : Copies the source_file over the target_file
 
 The transfer is done by using 'rsync'.
 
