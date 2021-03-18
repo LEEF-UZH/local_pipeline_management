@@ -1,0 +1,38 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options] [all]
+
+This is a wrapper around a call to the script download to download the RRD (Research Ready Data) sqlite database into the current directory
+
+If 'all' is specified
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+echo
+
+if [[ "$1" == "all" ]] || [[ "$1" == "--help" ]]; then
+  echo "Downloading all LEEF.RRD sqlite databases"
+  FROM=/mnt/leef_data/LEEF/9.backend/*
+else
+  echo "Downloading only LEEF.RRD.sqlite database="
+  FROM=/mnt/leef_data/LEEF/9.backend/LEEF.RRD.sqlite
+fi
+
+TO=$2
+
+echo
+
+$(dirname "$0")/download $FROM $TO
+
+
+

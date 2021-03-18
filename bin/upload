@@ -7,7 +7,7 @@ Usage: `basename $0` [options] source_directory target_directory
 Upload data from 'source' to the target_directory on the pipeline server in the 'Incoming' 
 directory.
 
-Depending on if a directory or a file is specifiedas source or target, the behaviour 
+Depending on if a directory or a file is specified as source or target, the behaviour 
 differs slightly:
 
 source_directory target_directory: Copies the source_directory into the target_directory
