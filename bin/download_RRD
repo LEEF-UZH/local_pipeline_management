@@ -22,13 +22,11 @@ echo
 
 if [[ "$1" == "all" ]] || [[ "$1" == "--help" ]]; then
   echo "Downloading all LEEF.RRD sqlite databases"
-  FROM=/mnt/leef_data/LEEF/9.backend/*
+  FROM=./9.backend/*
 else
-  echo "Downloading only LEEF.RRD.sqlite database="
-  FROM=/mnt/leef_data/LEEF/9.backend/LEEF.RRD.sqlite
+  echo "Downloading only LEEF.RRD.sqlite database"
+  FROM=./9.backend/LEEF.RRD.sqlite
 fi
-
-TO=$2
 
 echo
 
