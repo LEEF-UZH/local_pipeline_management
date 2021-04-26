@@ -41,7 +41,7 @@ echo
 
 mkdir -p $TO
 
-rsync --verbose --archive --recursive --compress --info=progress2 -e ssh \
+rsync --verbose --archive --recursive --compress -e ssh \
 	$USER@$SERVER:$FROM \
 	$TO/
   

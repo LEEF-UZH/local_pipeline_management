@@ -49,7 +49,7 @@ echo COMPETE : $USER@$SERVER:$FROM
 echo TO DIR  : $TO
 echo 
 
-rsync --verbose --archive --recursive --compress --info=progress2  -e ssh \
+rsync --verbose --archive --recursive --compress -e ssh \
 	$FROM \
 	$USER@$SERVER:$TO
   
