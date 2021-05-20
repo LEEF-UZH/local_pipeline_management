@@ -1,0 +1,54 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options]
+
+Check the connection to the pipeline server. The reachability of the pipeline server as well as the login credentials are checked.
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+
+echo
+echo "USER     : $USER"
+echo "SERVER   : $SERVER"
+echo 
+
+
+
+echo "####################################"
+echo Checking Pipeline server reachability ...
+ping -c1 -W3 -q $SERVER &>/dev/null
+reachable=$( echo $? )
+if [[ $reachable == 0 ]] ; then
+     echo OK!
+     echo "####################################"
+     echo Checking login credentials...
+     hostname=$(ssh $USER@$SERVER "hostname")
+     if [[ $hostname == leef-pipeline ]] ; then
+     		echo OK
+     elif [[ -z "$hostname" ]]; then
+     		echo Credentials are wrong! please obtain valid pubkey!
+     else
+     		echo "The server is not a leef pipeline server (hostname is not 'leef-pipeline')!"
+     fi
+else
+     echo Pipeline server not reachable!
+fi
+echo "####################################"
+echo
+
+
+
+
+
