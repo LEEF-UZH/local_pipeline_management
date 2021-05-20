@@ -1,0 +1,54 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options]
+
+Check if the pipaline if running. If it is running, print a '*' and repeat in 30 seconds.
+The script runs until the pipeline is not running anymore.
+
+
+The return value is
+
+0: not active
+1: active
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+sp='/-\|'
+sc=0
+spin() {
+   printf "\b${sp:sc++:1}"
+   ((sc==${#sp})) && sc=0
+}
+endspin() {
+   printf "\r%s\n" "$@"
+}
+
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+
+echo Begin:
+echo $(date)
+
+$(dirname "$0")/status &> /dev/null
+ACTIVE=$?
+
+until [[ $ACTIVE == 0 ]]; do
+  spin
+  sleep 5
+  $(dirname "$0")/status &> /dev/null
+  ACTIVE=$?
+done
+
+echo End:
+echo $(date)

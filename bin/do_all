@@ -1,0 +1,75 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options] source_directory
+       
+This script is a wrapper to make the running of the pipeline on local data easier. It is 
+doing the following steps:
+
+	- upload the data using 'upload'
+	- cleaning the pipeline using 'clean'
+	- preparing the pipeline using 'prepare'
+	- running the pipeline using 'start'
+	- stay active until the pipeline is finished. It will check ever 30 seconds and print 
+	  sa "*"
+	- when the pipeline has finished, download the log files into the current directory
+	  using 'download_logs'
+	- download the RRD using 'download_RRD'
+	
+Depending on if a directory or a file is specified as source or target, the behaviour 
+differs slightly:
+
+source_directory : directory with the raw data which will be uploaded to the pipeline 
+									 and analysed. This folder has to contain the folders
+									    - 00.general.parameter
+									    - 0.raw.data 
+									 
+The transfer is done by using 'rsync'.
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+FROM=$1
+TO=$1
+echo "#################################################"
+echo "#####   Uploading data   ########################"
+echo "#################################################"
+$(dirname "$0")/server $FROM $TO
+ 
+echo "#################################################"
+echo "#####   Cleaning pipeline  ######################"
+echo "#################################################"
+$(dirname "$0")/clean
+
+echo "#################################################"
+echo "#####   Preparing pipeline   ####################"
+echo "#################################################"
+$(dirname "$0")/start all
+
+echo "#################################################"
+echo "#####   Wait until done   #######################"
+echo "#################################################"
+echo You can quit this script by pressing CTRL-C and the pipeline will continue running.
+echo To see if the pipeline has finished run `wait_till_done`
+echo which will end when the pipeline has finished running.
+$(dirname "$0")/wait_till_done
+
+echo "#################################################"
+echo "#####   Download logs   #########################"
+echo "#################################################"
+$(dirname "$0")/download_logs
+
+echo "#################################################"
+echo "#####   Download RRD   ##########################"
+echo "#################################################"
+$(dirname "$0")/download_RRD
+
