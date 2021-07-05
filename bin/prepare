@@ -4,7 +4,7 @@ usage="
 Usage: `basename $0` [options] from
 
 Prepare the pipeline by populating the LEEF folder
-with the data in the folder 'Income/from'.
+with the data in the folder 'Incoming/from'.
 
 The command 'clean' will be run the *clean* command first and deleted the following folders in the LEEF folder:
 
