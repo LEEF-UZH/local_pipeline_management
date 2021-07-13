@@ -1,0 +1,25 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options] RRD_db
+       
+Creates a diagnostic html and pdf report in the directory of the RRD_db
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+DB=$1
+
+echo 
+echo "RRD db : $DB"
+echo 
+
+Rscript -e "library(LEEF.analysis); report_diagnostic('$1');"
