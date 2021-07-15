@@ -1,9 +1,13 @@
 #!/bin/bash
 
 usage="
-Usage: `basename $0` [options] RRD_db
+Usage: `basename $0` [options] RRD_db format
        
-Creates a diagnostic html and pdf report in the directory of the RRD_db
+Creates a diagnostic report in the format 'format' in the directory of the RRD_db as specified.
+If the second argument is not given, the format is 'html'
+
+This command requires that R and the package 'LEEF.analysis' is installed. 
+
 Options:
   -h, --help            Print short help message and exit
 "
@@ -17,9 +21,11 @@ fi
 ############
 
 DB=$1
+FORMAT="${2:-html}"
 
 echo 
 echo "RRD db : $DB"
+echo "Format : $FORMAT"
 echo 
 
-Rscript -e "library(LEEF.analysis); report_diagnostic('$1');"
+Rscript -e "library(LEEF.analysis); report_diagnostic('$1', '$FORMAT');"
