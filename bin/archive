@@ -4,11 +4,9 @@ usage="
 Usage: `basename $0` [options] source_directory target_directory
        `basename $0` [options] source_file target_directory
        
-Move move all content in the folder 'LEEF/3.archived.data' to the container 'LEEF.archived.data'
-and copy the content of the folder 'LEEF/9.backend' to the container 'LEEF.backenbd' 
-on the S3 Swift Object Storage.
-
-The transfer is done by using the 'swift' command.
+Move all content in the folder 'LEEF/3.archived.data' to the container 'LEEF.archived.data'
+and copy the content of the folder 'LEEF/9.backend' to the container 'LEEF.backend' 
+on the S3 Swift Object Storage. The transfer uses the 'swift' command.
 
 Options:
   -h, --help            Print short help message and exit
