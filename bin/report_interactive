@@ -3,8 +3,7 @@
 usage="
 Usage: `basename $0` [options] RRD_db format
        
-Creates a diagnostic report in the format 'format' in the directory of the RRD_db as specified.
-If the second argument is not given, the format is 'html'
+Launches an interactive report.
 
 This command requires that R and the package 'LEEF.analysis' is installed. 
 
@@ -25,7 +24,6 @@ FORMAT="${2:-html}"
 
 echo 
 echo "RRD db : $DB"
-echo "Format : $FORMAT"
 echo 
 
-Rscript -e "library(LEEF.analysis); report_diagnostic('DB', '$FORMAT');"
+Rscript -e "library(LEEF.analysis); db <- '$DB'; report_interactive();"
