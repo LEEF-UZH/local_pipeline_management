@@ -1,8 +1,7 @@
 #!/bin/bash
 
 usage="
-Usage: `basename $0` [options] source_directory target_directory
-       `basename $0` [options] source_file target_directory
+Usage: `basename $0` [options]
        
 Move all content in the folder 'LEEF/3.archived.data' to the container 'LEEF.archived.data'
 and copy the content of the folder 'LEEF/9.backend' to the container 'LEEF.backend' 
