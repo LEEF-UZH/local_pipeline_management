@@ -22,6 +22,13 @@ if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
   exit 0
 fi
 
+TEMPLATEDIR=template_folder
+
+if [[ -d "$TEMPLATEDIR" ]]
+then
+    echo "ERROR - folder $TEMPLATEDIR Exists. Please delete or rename it!"
+    exit
+fi
 
 if [ $# != 3 ]
   then
@@ -75,9 +82,9 @@ if [[ $YYYY < 2021 ]]; then
    echo "ERROR - YYYY (the year) can not be larger than 2021!" ; exit 1
 fi
 
-
+YY=${YYYY: -2}
 TIMESTAMP=$YYYY$MM$DD
-DATUM=$DD.$MM.${YYYY: -2}
+DATUM=$DD.$MM.$YY
 
 echo
 echo Timestamp: $TIMESTAMP
@@ -85,69 +92,81 @@ echo Datum    : $DATUM
 echo
 
 
-## Create folder_template folder
+## Create $TEMPLATEDIR folder
 
-mkdir folder_template
+mkdir $TEMPLATEDIR
 
-## Create folder_template/0.general.parameter folder
+## Create $TEMPLATEDIR/0.general.parameter folder
 
-mkdir folder_template/00.general.parameter
+mkdir $TEMPLATEDIR/00.general.parameter
 wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/compositions.csv \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/experimental_design.csv \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/sample_metadata.yml \
-	-P folder_template/00.general.parameter
-				
-## Create folder_template/0.raw.data folder
+	-P $TEMPLATEDIR/00.general.parameter
 
-mkdir folder_template/0.raw.data
+sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/00.general.parameter/sample_metadata.yml
 
-## Create folder_template/0.raw.data/bemovi.mag.16 folder
+## Create $TEMPLATEDIR/0.raw.data folder
 
-mkdir folder_template/0.raw.data/bemovi.mag.16
+mkdir $TEMPLATEDIR/0.raw.data
+
+## Create $TEMPLATEDIR/0.raw.data/bemovi.mag.16 folder
+
+mkdir $TEMPLATEDIR/0.raw.data/bemovi.mag.16
 wget \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/video.description.txt \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/bemovi_extract.mag.16.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/svm_video_classifiers_18c_16x.rds\
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds\
-	-P folder_template/0.raw.data/bemovi.mag.16
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/video.description.txt \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/bemovi_extract.mag.16.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_16x.rds \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds \
+	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.16
+	
+sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
+sed -i '' "s/%%DD%%/$DD/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
+sed -i '' "s/%%MM%%/$MM/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
+sed -i '' "s/%%YY%%/$YY/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
 
-## Create folder_template/0.raw.data/bemovi.mag.25 folder
+## Create $TEMPLATEDIR/0.raw.data/bemovi.mag.25 folder
 
-mkdir folder_template/0.raw.data/bemovi.mag.25
+mkdir $TEMPLATEDIR/0.raw.data/bemovi.mag.25
 wget \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/video.description.txt \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/bemovi_extract.mag.25.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/bemovi_extract.mag.25.cropped.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/svm_video_classifiers_18c_25x.rds\
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds\
-	-P folder_template/0.raw.data/bemovi.mag.25
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/video.description.txt \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.cropped.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x.rds \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds \
+	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.25
 
-## Create folder_template/0.raw.data/flowcam folder
+sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
+sed -i '' "s/%%DD%%/$DD/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
+sed -i '' "s/%%MM%%/$MM/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
+sed -i '' "s/%%YY%%/$YY/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
 
-mkdir folder_template/0.raw.data/flowcam
+## Create $TEMPLATEDIR/0.raw.data/flowcam folder
+
+mkdir $TEMPLATEDIR/0.raw.data/flowcam
 
 wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam.yml \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam_dilution.csv \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/classifier/18C/svm_flowcam_classifiers_18c.rds \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/classifier/Current_best_classifier_increasing_temperature/svm_flowcam_classifiers_increasing_best_available.rds \
-	-P folder_template/0.raw.data/flowcam
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/svm_flowcam_classifiers_18c.rds \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/svm_flowcam_classifiers_increasing_best_available.rds \
+	-P $TEMPLATEDIR/0.raw.data/flowcam
 	
-## Create folder_template/0.raw.data/flowcytometer folder
+## Create $TEMPLATEDIR/0.raw.data/flowcytometer folder
 
 mkdir 0.raw.data/flowcytometer
 wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcytometer/gates_coordinates.csv \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcytometer/metadata_flowcytometer.csv \
-	-P folder_template/0.raw.data/flowcytometer
+	-P $TEMPLATEDIR/0.raw.data/flowcytometer
 
-## Create folder_template/0.raw.data/manualcount folder
+## Create $TEMPLATEDIR/0.raw.data/manualcount folder
 
-mkdir folder_template/0.raw.data/manualcount
+mkdir $TEMPLATEDIR/0.raw.data/manualcount
 
 
-## Create folder_template/0.raw.data/o2meter folder
+## Create $TEMPLATEDIR/0.raw.data/o2meter folder
 
-mkdir folder_template/0.raw.data/o2meter
+mkdir $TEMPLATEDIR/0.raw.data/o2meter
 

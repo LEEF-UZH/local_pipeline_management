@@ -50,7 +50,7 @@ echo "####################################";
   --skip-identical \
   $TO_ARCHIVE_CONTAINER \
   $FROM_ARCHIVED &&
-sudo rm -rf $FROM_ARCHIVED;
+rm -rf $FROM_ARCHIVED;
 
 echo "####################################";
 echo "## uploading $FROM_BACKEND";
