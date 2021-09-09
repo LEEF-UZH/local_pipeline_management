@@ -93,9 +93,9 @@ mkdir folder_template
 
 mkdir folder_template/00.general.parameter
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/00.general.parameter/compositions.csv \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/00.general.parameter/experimental_design.csv \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/00.general.parameter/sample_metadata.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/compositions.csv \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/experimental_design.csv \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/sample_metadata.yml \
 	-P folder_template/00.general.parameter
 				
 ## Create folder_template/0.raw.data folder
@@ -106,21 +106,21 @@ mkdir folder_template/0.raw.data
 
 mkdir folder_template/0.raw.data/bemovi.mag.16
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.16/0%20-%20video%20description_tempolate/video.description.txt \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.16/bemovi_extract.mag.16.yml \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.16/svm_video_classifiers_18c_16x.rds\
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds\
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/video.description.txt \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/bemovi_extract.mag.16.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/svm_video_classifiers_18c_16x.rds\
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds\
 	-P folder_template/0.raw.data/bemovi.mag.16
 
 ## Create folder_template/0.raw.data/bemovi.mag.25 folder
 
 mkdir folder_template/0.raw.data/bemovi.mag.25
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.25/0%20-%20video%20description_tempolate/video.description.txt \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.25/bemovi_extract.mag.25.yml \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.25/bemovi_extract.mag.25.cropped.yml \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.25/svm_video_classifiers_18c_25x.rds\
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds\
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/video.description.txt \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/bemovi_extract.mag.25.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/bemovi_extract.mag.25.cropped.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/svm_video_classifiers_18c_25x.rds\
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds\
 	-P folder_template/0.raw.data/bemovi.mag.25
 
 ## Create folder_template/0.raw.data/flowcam folder
@@ -128,18 +128,18 @@ wget \
 mkdir folder_template/0.raw.data/flowcam
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/flowcam.yml \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/flowcam_dilution.csv \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/classifier/18C/svm_flowcam_classifiers_18c.rds \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/classifier/Current_best_classifier_increasing_temperature/svm_flowcam_classifiers_increasing_best_available.rds \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam_dilution.csv \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/classifier/18C/svm_flowcam_classifiers_18c.rds \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/classifier/Current_best_classifier_increasing_temperature/svm_flowcam_classifiers_increasing_best_available.rds \
 	-P folder_template/0.raw.data/flowcam
 	
 ## Create folder_template/0.raw.data/flowcytometer folder
 
 mkdir 0.raw.data/flowcytometer
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcytometer/gates_coordinates.csv \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcytometer/metadata_flowcytometer.csv \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcytometer/gates_coordinates.csv \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcytometer/metadata_flowcytometer.csv \
 	-P folder_template/0.raw.data/flowcytometer
 
 ## Create folder_template/0.raw.data/manualcount folder
