@@ -22,13 +22,6 @@ if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
   exit 0
 fi
 
-TEMPLATEDIR=template_folder
-
-if [[ -d "$TEMPLATEDIR" ]]
-then
-    echo "ERROR - folder $TEMPLATEDIR Exists. Please delete or rename it!"
-    exit
-fi
 
 if [ $# != 3 ]
   then
@@ -85,6 +78,15 @@ fi
 YY=${YYYY: -2}
 TIMESTAMP=$YYYY$MM$DD
 DATUM=$DD.$MM.$YY
+TEMPLATEDIR=$TIMESTAMP
+
+
+if [[ -d "$TEMPLATEDIR" ]]
+then
+    echo "ERROR - folder $TEMPLATEDIR Exists. Please delete or rename it!"
+    exit
+fi
+
 
 echo
 echo Timestamp: $TIMESTAMP
