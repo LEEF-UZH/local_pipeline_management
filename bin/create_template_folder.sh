@@ -105,6 +105,7 @@ wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/compositions.csv \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/experimental_design.csv \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/sample_metadata.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/README.md \ 
 	-P $TEMPLATEDIR/00.general.parameter
 
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/00.general.parameter/sample_metadata.yml
