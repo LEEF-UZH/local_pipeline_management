@@ -105,7 +105,7 @@ wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/compositions.csv \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/experimental_design.csv \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/sample_metadata.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/README.md \ 
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/README.md \
 	-P $TEMPLATEDIR/00.general.parameter
 
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/00.general.parameter/sample_metadata.yml
@@ -120,9 +120,16 @@ mkdir $TEMPLATEDIR/0.raw.data/bemovi.mag.16
 wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/video.description.txt \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/bemovi_extract.mag.16.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_16x.rds \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds \
 	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.16
+	
+wget \
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds
+
+wget \
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_16x.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_18c_16x.rds
+	
 	
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
 sed -i '' "s/%%DD%%/$DD/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
@@ -136,9 +143,16 @@ wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/video.description.txt \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.yml \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.cropped.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x.rds \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds \
 	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.25
+	
+wget \
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds
+
+wget \
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_18c_25x.rds
+
 
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
 sed -i '' "s/%%DD%%/$DD/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
@@ -152,9 +166,15 @@ mkdir $TEMPLATEDIR/0.raw.data/flowcam
 wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam.yml \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam_dilution.csv \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/svm_flowcam_classifiers_18c.rds \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/svm_flowcam_classifiers_increasing_best_available.rds \
 	-P $TEMPLATEDIR/0.raw.data/flowcam
+
+wget \
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_increasing_best_available.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_video_classifiers_increasing_25x_best_available.rds
+
+wget \
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_video_classifiers_18c_25x.rds
 	
 ## Create $TEMPLATEDIR/0.raw.data/flowcytometer folder
 
