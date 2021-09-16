@@ -166,7 +166,9 @@ wget \
 ## Create $TEMPLATEDIR/0.raw.data/manualcount folder
 
 mkdir $TEMPLATEDIR/0.raw.data/manualcount
-
+wget \
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/manualcount/manual_count.xlsx?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/manualcount/manual_count.xlsx
 
 ## Create $TEMPLATEDIR/0.raw.data/o2meter folder
 
