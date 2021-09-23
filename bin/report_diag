@@ -28,4 +28,4 @@ echo "RRD db : $DB"
 echo "Format : $FORMAT"
 echo 
 
-Rscript -e "library(LEEF.analysis); report_diagnostic('DB', '$FORMAT');"
+Rscript -e "library(LEEF.analysis); report_diagnostic('$DB', '$FORMAT');"
