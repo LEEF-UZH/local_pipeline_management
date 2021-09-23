@@ -170,11 +170,11 @@ wget \
 
 wget \
 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_increasing_best_available.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_video_classifiers_increasing_25x_best_available.rds
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_increasing_best_available.rds
 
 wget \
 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_video_classifiers_18c_25x.rds
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c.rds
 	
 ## Create $TEMPLATEDIR/0.raw.data/flowcytometer folder
 
