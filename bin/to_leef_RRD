@@ -1,0 +1,36 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options]
+
+Copy the RRD (Research Ready Data) sqlite database into the 0.RRD directory on the LEEF group server.
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+USER=ubuntu
+SERVER=$($(dirname "$0")/server)
+FROM=/home/ubuntu/LEEF/9.backend/LEEF.RRD.sqlite
+TO=/mnt/LEEF_IEU/0.RRD/NEW.LEEF.RRD.sqlite
+
+echo
+echo "FROM FILE : $FROM"
+echo "TO FILE   : $TO"
+echo "USER      : ubuntu"
+echo "SERVER    : $SERVER"
+echo 
+echo
+
+ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM $TO"
+
+
+
