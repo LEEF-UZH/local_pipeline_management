@@ -3,16 +3,25 @@
 usage="
 Usage: `basename $0` [options] from
 
-Prepare the pipeline by populating the LEEF folder
-with the data in the folder 'Incoming/from'.
+Prepare the pipeline by populating the LEEF folder with the data in the 'from' folder on the LEEF drive.
 
-The command 'clean' will be run the *clean* command first and deleted the following folders in the LEEF folder:
+The command will run the *clean* command first and deleted the following folders in the LEEF folder:
 
 	- 00.general.data
 	- 0.raw.data
 	- 1.pre-processed.data
 	- 2.extracted.data
+	- log*
 	
+afterwards, it will copy the folders
+
+	- from/00.general.parameter  
+	- from/0.raw.data 
+	
+into the LEEF pipeline, and create a directory 
+
+	- 1.InProgress/from
+
 Options:
   -h, --help            Print short help message and exit
 
@@ -26,19 +35,10 @@ fi
 ############
 ############
 
-echo "
-This will *delete* the following folders in the LEEF folder:
-
-	- LEEF/00.general.data
-	- LEEF/0.raw.data
-	- LEEF/1.pre-processed.data
-	- LEEF/2.extracted.data
-
-on the pipeline server in the LEEF folder.
-"
 $($(dirname "$0")/clean)
 
-FROM=$1
+FROM=/mnt/LEEF_IEU/$1
+
 USER=ubuntu
 SERVER=$($(dirname "$0")/server)
 
@@ -50,19 +50,21 @@ echo "COMLPETE : $USER@$SERVER:$FROM"
 echo 
 
 echo "
-The following folders will be moved in the LEEF folder:
+The following folders will be MOVED in the LEEF folder:
 
 	- Incoming/$FROM/00.general.parameter
 	- Incoming/$FROM/0.raw.data
 
 on the pipeline server in the LEEF folder.
 "
+
 read -r -p "Are You Sure you want to move these directories? Type MOVE to confirm " input
 echo $input
 
 case $input in
 	MOVE)
- 		ssh $USER@$SERVER -t "mv -f ./Incoming/$FROM/00.general.parameter ./Incoming/$FROM/0.raw.data ./LEEF/"
+ 		ssh $USER@$SERVER -t "cp -f $FROM/00.general.parameter $FROM/0.raw.data ./LEEF/"
+ 		ssh $USER@$SERVER -t "sudo mkdir -f /mnt/LEEF_IEU/1.InProgress/$1"
  	;;
   [nN][oO]|[nN])
  		echo "Aborted - nothing moved"
@@ -73,6 +75,3 @@ case $input in
  		exit 1
  	;;
 esac
-
-
-

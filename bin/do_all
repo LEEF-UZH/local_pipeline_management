@@ -39,17 +39,6 @@ fi
 ############
 
 FROM=$1
-TO=$1
-echo "#################################################"
-echo "#####   Uploading data   ########################"
-echo "#################################################"
-$(dirname "$0")/server $FROM $TO
- 
-echo "#################################################"
-echo "#####   Cleaning pipeline  ######################"
-echo "#################################################"
-$(dirname "$0")/clean
-
 echo "#################################################"
 echo "#####   Preparing pipeline   ####################"
 echo "#################################################"
@@ -67,18 +56,3 @@ echo You can quit this script by pressing CTRL-C and the pipeline will continue 
 echo To see if the pipeline has finished run `wait_till_done`
 echo which will end when the pipeline has finished running.
 $(dirname "$0")/wait_till_done
-
-echo "#################################################"
-echo "#####   Download logs   #########################"
-echo "#################################################"
-$(dirname "$0")/download_logs
-
-echo "#################################################"
-echo "#####   Download RRD   ##########################"
-echo "#################################################"
-$(dirname "$0")/download_RRD
-
-echo "#################################################"
-echo "#####   Create RRD report html  #################"
-echo "#################################################"
-$(dirname "$0")/report_diag ./LEEF.RRD.sqlite

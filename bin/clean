@@ -10,6 +10,7 @@ This will *delete* the following folders in the LEEF folder:
 	- 0.raw.data
 	- 1.pre-processed.data
 	- 2.extracted.data
+	- log*
 	
 Options:
   -h, --help            Print short help message and exit
@@ -40,6 +41,7 @@ This will *delete* the following folders in the LEEF folder:
 	- LEEF/0.raw.data
 	- LEEF/1.pre-processed.data
 	- LEEF/2.extracted.data
+	- LEEF/log*
 
 on the pipeline server in the LEEF folder.
 "
@@ -48,7 +50,8 @@ echo $input
 
 case $input in
 	DELETE)
- 		ssh $USER@$SERVER -t "rm -rf ./LEEF/00.general.parameter ./LEEF/0.raw.data ./LEEF/1.pre-processed.data ./LEEF/2.extracted.data"
+ 		ssh $USER@$SERVER -t "rm -rf ./LEEF/00.general.parameter ./LEEF/0.raw.data ./LEEF/1.pre-processed.data ./LEEF/log* ./LEEF/2.extracted.data"
+ 		ssh $USER@$SERVER -t "sudo mkdir -f /mnt/LEEF_IEU/1.InProgress/*"
  	;;
   [nN][oO]|[nN])
  		echo "Aborted - nothing deleted"
@@ -59,6 +62,3 @@ case $input in
  		exit 1
  	;;
 esac
-
-
-

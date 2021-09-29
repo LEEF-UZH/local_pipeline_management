@@ -4,8 +4,8 @@ usage="
 Usage: `basename $0` [options] source_directory target_directory
        `basename $0` [options] source_file target_directory
        
-Upload data from 'source' to the target_directory on the pipeline server in the 'Incoming' 
-directory.
+Upload data from 'source' from the LEEF folder on the group server to the target_directory 
+on the pipeline server in the 'Incoming' directory.
 
 Depending on if a directory or a file is specified as source or target, the behaviour 
 differs slightly:
@@ -28,7 +28,7 @@ fi
 ############
 ############
 
-FROM=$1
+FROM=/mnt/LEEF_IEU/$1
 TO=/mnt/leef_data/Incoming/$2
 USER=ubuntu
 SERVER=$($(dirname "$0")/server)
@@ -38,18 +38,6 @@ echo "FROM DIR : $FROM"
 echo "TO DIR   : $TO"
 echo "USER     : ubuntu"
 echo "SERVER   : $SERVER"
-echo "COMLPETE : $USER@$SERVER:$TO"
 echo 
 
-echo
-echo FROM DIR: $FROM
-echo USER    : ubuntu
-echo SERVER  : 172.23.57.181
-echo COMPETE : $USER@$SERVER:$FROM
-echo TO DIR  : $TO
-echo 
-
-rsync --verbose --archive --recursive --compress -e ssh \
-	$FROM \
-	$USER@$SERVER:$TO
-  
+ssh $USER@$SERVER -t "rsync --verbose --archive --recursive $FROM $TO"
