@@ -32,3 +32,7 @@ echo
 
 ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM $TO"
 
+echo "#################################################"
+echo "#####   The logs are in the folder   ############"
+echo "#####    0.Logs on the LEEF drive    ############"
+echo "#################################################"

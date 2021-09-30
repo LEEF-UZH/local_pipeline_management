@@ -32,5 +32,8 @@ echo
 
 ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM $TO"
 
-
-
+echo "#################################################"
+echo "#####   The RRD is in the folder     ############"
+echo "#####    0.RRD on the LEEF drive     ############"
+echo "#####    named 'NEW.LEEF.RRD.sqlite' ############"
+echo "#################################################"
