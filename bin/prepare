@@ -50,21 +50,22 @@ echo "COMLPETE : $USER@$SERVER:$FROM"
 echo 
 
 echo "
-The following folders will be MOVED in the LEEF folder:
+The following folders will be COPIED in the LEEF folder:
 
-	- Incoming/$FROM/00.general.parameter
-	- Incoming/$FROM/0.raw.data
+	- $FROM/00.general.parameter
+	- $FROM/0.raw.data
 
 on the pipeline server in the LEEF folder.
 "
 
-read -r -p "Are You Sure you want to move these directories? Type MOVE to confirm " input
+read -r -p "Are You Sure you want to COPY these directories? Type COPY to confirm " input
 echo $input
 
 case $input in
-	MOVE)
- 		ssh $USER@$SERVER -t "cp -f $FROM/00.general.parameter $FROM/0.raw.data ./LEEF/"
- 		ssh $USER@$SERVER -t "sudo mkdir -f /mnt/LEEF_IEU/1.InProgress/$1"
+	COPY)
+ 		ssh $USER@$SERVER -t "rsync --verbose --archive --progress $FROM/00.general.parameter ./LEEF/"
+ 		ssh $USER@$SERVER -t "rsync --verbose --archive --progress $FROM/0.raw.data ./LEEF/"
+ 		ssh $USER@$SERVER -t "sudo mkdir /mnt/LEEF_IEU/1.InProgress/$1"
  	;;
   [nN][oO]|[nN])
  		echo "Aborted - nothing moved"
