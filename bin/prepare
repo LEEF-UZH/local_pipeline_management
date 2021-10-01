@@ -65,7 +65,7 @@ case $input in
 	COPY)
  		ssh $USER@$SERVER -t "rsync --verbose --archive --progress $FROM/00.general.parameter ./LEEF/"
  		ssh $USER@$SERVER -t "rsync --verbose --archive --progress $FROM/0.raw.data ./LEEF/"
- 		ssh $USER@$SERVER -t "sudo mkdir /mnt/LEEF_IEU/1.InProgress/$1"
+ 		ssh $USER@$SERVER -t "sudo touch /mnt/LEEF_IEU/1.InProgress/$1"
  	;;
   [nN][oO]|[nN])
  		echo "Aborted - nothing moved"

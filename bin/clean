@@ -51,7 +51,7 @@ echo $input
 case $input in
 	DELETE)
  		ssh $USER@$SERVER -t "rm -rf ./LEEF/00.general.parameter ./LEEF/0.raw.data ./LEEF/1.pre-processed.data ./LEEF/log* ./LEEF/2.extracted.data"
- 		ssh $USER@$SERVER -t "sudo mkdir -f /mnt/LEEF_IEU/1.InProgress/*"
+ 		ssh $USER@$SERVER -t "sudo rm -f /mnt/LEEF_IEU/1.InProgress/*"
  	;;
   [nN][oO]|[nN])
  		echo "Aborted - nothing deleted"
