@@ -1,0 +1,31 @@
+#!/bin/bash
+
+usage="
+Usage: `basename $0` [options] data_directory
+       
+Creates a sanity check report in the format 'format' in the data_directory.
+If the second argument is not given, the format is 'html'
+
+This command requires that R and the package 'LEEF.analysis' is installed. 
+
+Options:
+  -h, --help            Print short help message and exit
+"
+
+if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+  echo "${usage}"
+  exit 0
+fi
+
+############
+############
+
+SAMPLE_DIR=$1
+FORMAT="${2:-html}"
+
+echo 
+echo "SAMPLE_DIR : $SAMPLE_DIR"
+echo "Format     : $FORMAT"
+echo 
+
+Rscript -e "library(LEEF.analysis); report_sanity_check('$SAMPLE_DIR', '$FORMAT');"
