@@ -60,12 +60,12 @@ $(dirname "$0")/wait_till_done
 echo "#################################################"
 echo "#####   Copying logs to LEEF   ##################"
 echo "#################################################"
-$(dirname "$0")/to_leef_logs
+$(dirname "$0")/to_leef_logs $FROM
 
 echo "#################################################"
 echo "#####   Copying RRD to LEEF   ###################"
 echo "#################################################"
-$(dirname "$0")/to_leef_rrd
+$(dirname "$0")/to_leef_rrd $FROM
 
 echo "#################################################"
 echo "#####   The pipeline has finished    ############"

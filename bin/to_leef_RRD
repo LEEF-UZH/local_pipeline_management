@@ -1,9 +1,12 @@
 #!/bin/bash
 
 usage="
-Usage: `basename $0` [options]
+Usage: `basename $0` [options] suffix
 
-Copy the RRD (Research Ready Data) sqlite database into the 0.RRD directory on the LEEF group server.
+Copy the RRD (Research Ready Data) sqlite database 
+into the 0.RRD directory on the LEEF group server.
+
+If only no argument is specified, suffix will be '.NEW'.
 
 Options:
   -h, --help            Print short help message and exit
@@ -17,10 +20,12 @@ fi
 ############
 ############
 
+SUFFIX="${1:-NEW}"
+
 USER=ubuntu
 SERVER=$($(dirname "$0")/server)
 FROM=/home/ubuntu/LEEF/9.backend/LEEF.RRD.sqlite
-TO=/mnt/LEEF_IEU/0.RRD/NEW.LEEF.RRD.sqlite
+TO=/mnt/LEEF_IEU/0.RRD/LEEF.RRD.$SUFFIX.sqlite
 
 echo
 echo "FROM FILE : $FROM"
@@ -32,8 +37,8 @@ echo
 
 ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM $TO"
 
-echo "#################################################"
-echo "#####   The RRD is in the folder     ############"
-echo "#####    0.RRD on the LEEF drive     ############"
-echo "#####    named 'NEW.LEEF.RRD.sqlite' ############"
-echo "#################################################"
+echo "#####################################################"
+echo "#####   The RRD is in the folder         ############"
+echo "#####    0.RRD on the LEEF drive         ############"
+echo "#####    named 'LEEF.RRD.$SUFFIX.sqlite' ############"
+echo "#####################################################"

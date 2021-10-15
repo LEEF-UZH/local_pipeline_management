@@ -1,10 +1,15 @@
 #!/bin/bash
 
 usage="
-Usage: `basename $0` [options] data_directory
+Usage: `basename $0` [options] data_directory suffix format
        
 Creates a sanity check report in the format 'format' in the data_directory.
-If the second argument is not given, the format is 'html'
+
+The report is named 'Sanity_Check_report' or, if 'suffix' is specified, 
+'Sanity_Check_report.suffix' followed with the extension depending on 'format'.
+
+If the third argument is not given, the format is 'html'
+If only one argument is specified, suffix will be '' and format will be 'html'
 
 This command requires that R and the package 'LEEF.analysis' is installed. 
 
@@ -21,11 +26,13 @@ fi
 ############
 
 SAMPLE_DIR=$1
-FORMAT="${2:-html}"
+SUFFIX="${2:-''}"
+FORMAT="${3:-html}"
 
 echo 
 echo "SAMPLE_DIR : $SAMPLE_DIR"
+echo "SUFFIX : $SUFFIX"
 echo "Format     : $FORMAT"
 echo 
 
-Rscript -e "library(LEEF.analysis); report_sanity_check('$SAMPLE_DIR', '$FORMAT');"
+Rscript -e "library(LEEF.analysis); report_sanity_check('$SAMPLE_DIR', '$SUFFIX', '$FORMAT');"
