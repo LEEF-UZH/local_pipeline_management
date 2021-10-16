@@ -26,7 +26,7 @@ fi
 ############
 
 SAMPLE_DIR=$1
-SUFFIX="${2:-''}"
+SUFFIX="${2:-}"
 FORMAT="${3:-html}"
 
 echo 
