@@ -48,6 +48,7 @@ echo "####################################";
 /home/ubuntu/.local/bin/swift upload \
   --changed \
   --skip-identical \
+  --segment-size 1073741824 \
   $TO_ARCHIVE_CONTAINER \
   $FROM_ARCHIVED &&
 sudo rm -rf $FROM_ARCHIVED;
@@ -58,6 +59,7 @@ echo "####################################";
 /home/ubuntu/.local/bin/swift upload \
   --changed \
   --skip-identical \
+  --segment-size 1073741824 \
   $TO_BACKEND_CONTAINER \
   $FROM_BACKEND \
   --object-name LEEF.RRD.$(date +%Y-%m-%d).sqlite &&
