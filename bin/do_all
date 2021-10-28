@@ -15,8 +15,9 @@ doing the following steps:
 	- when the pipeline has finished, download the log files into the current directory
 	  using 'download_logs'
 	- download the RRD using 'download_RRD'
-	- create the diagnostic report (dependa on local installation of R and the 
-	  LEEF.analysis package)
+	- create the diagnostic report . This depends on:
+		- local installation of R and the LEEF.analysis package
+		- the shared LEEF drive is mounted on /Volumes/LEEF as it is expected on a Mac.
 		
 Depending on if a directory or a file is specified as source or target, the behaviour 
 differs slightly:
