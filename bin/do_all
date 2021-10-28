@@ -15,7 +15,9 @@ doing the following steps:
 	- when the pipeline has finished, download the log files into the current directory
 	  using 'download_logs'
 	- download the RRD using 'download_RRD'
-	
+	- create the diagnostic report (dependa on local installation of R and the 
+	  LEEF.analysis package)
+		
 Depending on if a directory or a file is specified as source or target, the behaviour 
 differs slightly:
 
@@ -76,4 +78,26 @@ echo "#####                                ############"
 echo "#####   The RRD is in the folder     ############"
 echo "#####    0.RRD on the LEEF drive     ############"
 echo "#####    named 'NEW.LEEF.RRD.sqlite' ############"
+echo "#####                                ############"
+echo "#####   The next step(s) do not      ############"
+echo "#####    influence the pipeline      ############"
+echo "#####    and the pipelie has         ############"
+echo "#####    finished.                   ############"
+echo "#################################################"
+
+
+echo "#################################################"
+echo "#####   Creating Diagnostic Report   ############"
+echo "#################################################"
+$(dirname "$0")/report_diag /Volumes/LEEF/0.RRD/LEEF.RRD.$FROM.sqlite $FROM
+
+echo "#################################################"
+echo "#####   Please check the report named ###########"
+echo "#####                                 ###########"
+echo "#####   Diagnostic_Report.$FROM.html  ###########"
+echo "#####    in the 0.RRD folder.         ###########"
+echo "#####                                 ###########"
+echo "#####   When the everything looks OK  ###########"
+echo "#####    run the command 'clean'      ###########"
+echo "#####    to clean the pipeline again. ###########"
 echo "#################################################"
