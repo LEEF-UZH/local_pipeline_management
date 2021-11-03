@@ -25,7 +25,7 @@ fi
 
 if [ $# != 3 ]
   then
-    echo "ERROR = exactly three arguments need to be specified: DD MM YYY!"
+    echo "ERROR = exactly three arguments need to be specified: DD MM YYYY!"
     exit
 fi
 
@@ -143,6 +143,7 @@ wget \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/video.description.txt \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.yml \
 	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.cropped.yml \
+	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.classifier_cropped.yml \
 	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.25
 	
 wget \
