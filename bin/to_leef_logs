@@ -35,7 +35,7 @@ echo "SERVER    : $SERVER"
 echo 
 echo
 
-ssh $USER@$SERVER -t "sudo mkdir -q $TO"
+ssh $USER@$SERVER -t "sudo mkdir -p $TO"
 ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM $TO"
 
 echo "#################################################"
