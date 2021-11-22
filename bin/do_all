@@ -97,7 +97,7 @@ echo "#################################################"
 echo "#####   Moving data folder on LEEF   ############"
 echo "#####     to ./0.ToCheck             ############"
 echo "#################################################"
-sudo mv /Volumes/LEEF/$FROM /Volumes/LEEF/$FROM
+mv /Volumes/LEEF/$FROM /Volumes/LEEF/0.ToCheck/$FROM
 
 
 echo "#################################################"
