@@ -123,12 +123,12 @@ wget \
 	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.16
 	
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_increasing_16x_best_available.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_increasing_trained_at_18c_16x_december2021.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_increasing_trained_at_18c_16x_december2021.rds
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_16x.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_18c_16x.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_16x_december2021.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_18c_16x_december2021.rds
 	
 	
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
@@ -147,12 +147,12 @@ wget \
 	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.25
 	
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_increasing_25x_best_available.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_increasing_trained_at_18c_25x_december2021.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_increasing_trained_at_18c_25x_december2021.rds
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_18c_25x.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x_december2021.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_18c_25x_december2021.rds
 
 
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
@@ -170,12 +170,12 @@ wget \
 	-P $TEMPLATEDIR/0.raw.data/flowcam
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_increasing_best_available.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_increasing_best_available.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_increasing_trained_at_18c_december2021.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_increasing_trained_at_18c_december2021.rds
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c_december2021.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c_december2021.rds
 	
 ## Create $TEMPLATEDIR/0.raw.data/flowcytometer folder
 
