@@ -92,6 +92,14 @@ echo "#####   Creating Diagnostic Report   ############"
 echo "#################################################"
 $(dirname "$0")/report_diag /Volumes/LEEF/0.RRD/LEEF.RRD.$FROM.sqlite $FROM
 
+
+echo "#################################################"
+echo "#####   Moving data folder on LEEF   ############"
+echo "#####     to ./0.ToCheck             ############"
+echo "#################################################"
+mv /Volumes/LEEF/$FROM /Volumes/LEEF/0.ToCheck/$FROM
+
+
 echo "#################################################"
 echo "#####   Please check the report named ###########"
 echo "#####                                 ###########"
@@ -100,5 +108,8 @@ echo "#####    in the 0.RRD folder.         ###########"
 echo "#####                                 ###########"
 echo "#####   When the everything looks OK  ###########"
 echo "#####    run the command 'clean'      ###########"
-echo "#####    to clean the pipeline again. ###########"
+echo "#####    to clean the pipeline.       ###########"
+echo "#####    and move the folder $FROM    ###########"
+echo "#####    in the 0.ToCheck directory   ###########"
+echo "#####    into the 3.Done directory    ###########"
 echo "#################################################"
