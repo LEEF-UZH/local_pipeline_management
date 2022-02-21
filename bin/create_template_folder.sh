@@ -170,12 +170,12 @@ wget \
 	-P $TEMPLATEDIR/0.raw.data/flowcam
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_increasing_trained_at_18c_december2021.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_increasing_trained_at_18c_december2021.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c_decrLight18_trained_earlyFeb22.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c_decrLight18_trained_earlyFeb22.rds
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c_december2021.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c_december2021.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c_normLight30_trained_earlyFeb22.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c_normLight30_trained_earlyFeb22.rds
 	
 ## Create $TEMPLATEDIR/0.raw.data/flowcytometer folder
 
