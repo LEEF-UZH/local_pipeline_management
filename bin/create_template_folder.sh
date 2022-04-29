@@ -124,7 +124,7 @@ wget \
 	
 wget \
 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/vm_video_classifiers_18c_20220419_MergedData.rds
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds
 
 # wget \
 # 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds?raw=true \
