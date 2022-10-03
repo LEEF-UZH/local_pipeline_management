@@ -123,8 +123,8 @@ wget \
 	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.16
 	
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_16x_20220706_MergedData.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_16x_20220706_MergedData.rds
 
 # wget \
 # 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds?raw=true \
@@ -147,8 +147,8 @@ wget \
 	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.25
 	
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x_20220419_MergedData.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_18c_25x_20220419_MergedData.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_25x_20220706_MergedData.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_25x_20220706_MergedData.rds
 
 # wget \
 # 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x_20220419_MergedData.rds?raw=true \
@@ -170,8 +170,8 @@ wget \
 	-P $TEMPLATEDIR/0.raw.data/flowcam
 
 wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c_16x_20220419_MergedData.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c_16x_20220419_MergedData.rds
+	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_B02_contaminated_after_20220504_20220710_MergedData.rds?raw=true \
+	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_20220710_MergedData.rds
 
 # wget \
 # 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c_16x_20220419_MergedData.rds?raw=true \
