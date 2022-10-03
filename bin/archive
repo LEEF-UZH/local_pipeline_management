@@ -23,10 +23,10 @@ USER=ubuntu
 SERVER=$($(dirname "$0")/server)
 
 FROM_ARCHIVED=./LEEF/3.archived.data
-TO_ARCHIVE_CONTAINER=LEEF.archived.data
+TO_ARCHIVE_CONTAINER=LEEF_2.archived.data
 
 FROM_BACKEND=./LEEF/9.backend
-TO_BACKEND_CONTAINER=LEEF.backend.data
+TO_BACKEND_CONTAINER=LEEF_2.backend.data
 
 echo
 echo "USER     : ubuntu"
