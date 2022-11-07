@@ -16,6 +16,9 @@ DD  : Day of the month with two digits
 MM  : Month of the year with two digits
 YYYY: Year with four digits
 "
+BRANCH=LEEF-2
+REF=heads/$BRANCH
+FILE=$BRANCH.zip
 
 if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
   echo "${usage}"
@@ -88,111 +91,61 @@ then
 fi
 
 
-echo
+echo "#####################"
 echo Timestamp: $TIMESTAMP
 echo Datum    : $DATUM
-echo
+echo File     : $FILE
+echo "#####################"
 
+## Download zip file when needed
 
-## Create $TEMPLATEDIR folder
+if [ -e "$FILE" ]; then
+		echo "#####################"
+    echo "$FILE does exist."
+    echo "Using existing template."
+    echo "To dowenload new template, delete the file $FILE."
+		echo "#####################"
+else 
+		echo "#####################"
+    echo "$FILE does not exist. Dowenloading it!"
+    echo "This will take some time."
+		echo "#####################"
+		wget https://github.com/LEEF-UZH/LEEF.parameter/archive/refs/$REF.zip -O $FILE
+fi 
 
-mkdir $TEMPLATEDIR
+## unzip file 
 
-## Create $TEMPLATEDIR/0.general.parameter folder
+unzip $FILE
 
-mkdir $TEMPLATEDIR/00.general.parameter
-wget \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/compositions.csv \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/experimental_design.csv \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/00.general.parameter/sample_metadata.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/README.md \
-	-P $TEMPLATEDIR/00.general.parameter
+## move parameter into $TEMPLATEDIR
+
+mv LEEF.parameter-$BRANCH/parameter ./$TEMPLATEDIR
+mv LEEF.parameter-$BRANCH/README.md ./$TEMPLATEDIR/00.general.parameter
+rm -rf ./LEEF.parameter-$BRANCH
+
+## set timestamps
+
+### $TEMPLATEDIR/0.general.parameter folder
 
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/00.general.parameter/sample_metadata.yml
 
-## Create $TEMPLATEDIR/0.raw.data folder
+### $TEMPLATEDIR/0.raw.data/bemovi.mag.16 folder
 
-mkdir $TEMPLATEDIR/0.raw.data
-
-## Create $TEMPLATEDIR/0.raw.data/bemovi.mag.16 folder
-
-mkdir $TEMPLATEDIR/0.raw.data/bemovi.mag.16
-wget \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/video.description.txt \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.16/bemovi_extract.mag.16.yml \
-	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.16
-	
-wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_16x_20220706_MergedData.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_16x_20220706_MergedData.rds
-
-# wget \
-# 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds?raw=true \
-# 	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.16/svm_video_classifiers_18c_20220419_MergedData.rds
-	
-	
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
 sed -i '' "s/%%DD%%/$DD/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
 sed -i '' "s/%%MM%%/$MM/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
 sed -i '' "s/%%YY%%/$YY/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.16/video.description.txt
 
-## Create $TEMPLATEDIR/0.raw.data/bemovi.mag.25 folder
-
-mkdir $TEMPLATEDIR/0.raw.data/bemovi.mag.25
-wget \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/video.description.txt \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.cropped.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/bemovi.mag.25/bemovi_extract.mag.25.non_cropped.yml \
-	-P $TEMPLATEDIR/0.raw.data/bemovi.mag.25
-	
-wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_25x_20220706_MergedData.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_25x_20220706_MergedData.rds
-
-# wget \
-# 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/bemovi.mag.25/svm_video_classifiers_18c_25x_20220419_MergedData.rds?raw=true \
-# 	-O $TEMPLATEDIR/0.raw.data/bemovi.mag.25/svm_video_classifiers_18c_25x_20220419_MergedData.rds
-
+### $TEMPLATEDIR/0.raw.data/bemovi.mag.25 folder
 
 sed -i '' "s/%%TIMESTAMP%%/$TIMESTAMP/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
 sed -i '' "s/%%DD%%/$DD/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
 sed -i '' "s/%%MM%%/$MM/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
 sed -i '' "s/%%YY%%/$YY/g" $TEMPLATEDIR/0.raw.data/bemovi.mag.25/video.description.txt
 
-## Create $TEMPLATEDIR/0.raw.data/flowcam folder
 
-mkdir $TEMPLATEDIR/0.raw.data/flowcam
-
-wget \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam.yml \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcam/flowcam_dilution.csv \
-	-P $TEMPLATEDIR/0.raw.data/flowcam
-
-wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_B02_contaminated_after_20220504_20220710_MergedData.rds?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_20220710_MergedData.rds
-
-# wget \
-# 	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/flowcam/svm_flowcam_classifiers_18c_16x_20220419_MergedData.rds?raw=true \
-# 	-O $TEMPLATEDIR/0.raw.data/flowcam/svm_flowcam_classifiers_18c_16x_20220419_MergedData.rds
-	
-## Create $TEMPLATEDIR/0.raw.data/flowcytometer folder
-
-mkdir 0.raw.data/flowcytometer
-wget \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcytometer/gates_coordinates.csv \
-	https://raw.githubusercontent.com/LEEF-UZH/LEEF.parameter/main/parameter/flowcytometer/metadata_flowcytometer.csv \
-	-P $TEMPLATEDIR/0.raw.data/flowcytometer
-
-## Create $TEMPLATEDIR/0.raw.data/manualcount folder
-
-mkdir $TEMPLATEDIR/0.raw.data/manualcount
-wget \
-	https://github.com/LEEF-UZH/LEEF.parameter/blob/main/parameter/manualcount/manual_count.xlsx?raw=true \
-	-O $TEMPLATEDIR/0.raw.data/manualcount/manual_count.xlsx
-
-## Create $TEMPLATEDIR/0.raw.data/o2meter folder
-
-mkdir $TEMPLATEDIR/0.raw.data/o2meter
-
+## Done
+echo "#####################"
+echo "Done!"
+echo "The file $FILE has not been deleted and will be re-used!"
+echo "#####################"
