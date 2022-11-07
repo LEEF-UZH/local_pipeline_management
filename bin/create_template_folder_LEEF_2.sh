@@ -16,7 +16,7 @@ DD  : Day of the month with two digits
 MM  : Month of the year with two digits
 YYYY: Year with four digits
 "
-BRANCH=LEEF-2_dev
+BRANCH=LEEF-2
 REF=heads/$BRANCH
 FILE=$BRANCH.zip
 
@@ -120,6 +120,7 @@ unzip $FILE
 ## move parameter into $TEMPLATEDIR
 
 mv LEEF.parameter-$BRANCH/parameter ./$TEMPLATEDIR
+mv LEEF.parameter-$BRANCH/README.md ./$TEMPLATEDIR/00.general.parameter
 rm -rf ./LEEF.parameter-$BRANCH
 
 ## set timestamps
