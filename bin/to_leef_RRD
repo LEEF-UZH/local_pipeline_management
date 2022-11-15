@@ -24,8 +24,11 @@ SUFFIX="${1:-NEW}"
 
 USER=ubuntu
 SERVER=$($(dirname "$0")/server)
-FROM=/home/ubuntu/LEEF/9.backend/LEEF.RRD.sqlite
-TO=/mnt/LEEF_IEU/0.RRD/LEEF.RRD.$SUFFIX.sqlite
+FROM_1=/home/ubuntu/LEEF/9.backend/LEEF-2.RRD.sqlite
+TO_1=/mnt/LEEF_IEU/0.RRD/LEEF-2.RRD.$SUFFIX.sqlite
+
+FROM_2=/home/ubuntu/LEEF/9.backend/LEEF-2.RRD.traits.sqlite
+TO_2=/mnt/LEEF_IEU/0.RRD/LEEF-2.RRD.traits.$SUFFIX.sqlite
 
 echo
 echo "FROM FILE : $FROM"
@@ -35,8 +38,11 @@ echo "SERVER    : $SERVER"
 echo 
 echo
 
-ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM $TO"
-ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM $TO"
+ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM_1 $TO_1"
+ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM_1 $TO_1"
+
+ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM_2 $TO_2"
+ssh $USER@$SERVER -t "sudo rsync --verbose --archive --progress $FROM_2 $TO_2"
 
 echo "#####################################################"
 echo "#####   The RRD is in the folder         ############"

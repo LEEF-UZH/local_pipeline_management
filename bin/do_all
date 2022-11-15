@@ -90,7 +90,7 @@ echo "#################################################"
 echo "#################################################"
 echo "#####   Creating Diagnostic Report   ############"
 echo "#################################################"
-$(dirname "$0")/report_diag /Volumes/LEEF/0.RRD/LEEF.RRD.$FROM.sqlite $FROM
+# $(dirname "$0")/report_diag /Volumes/LEEF/0.RRD/LEEF-2.RRD.$FROM.sqlite $FROM
 
 
 echo "#################################################"
