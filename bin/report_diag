@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage="
-Usage: `basename $0` [options] RRD_db suffix format
+Usage: `basename $0` [options] RRD_db suffix format template
        
 Creates a diagnostic report in the format 'format' in the directory 
 of the RRD_db as specified.
@@ -11,6 +11,9 @@ The report is named 'Diagnostic_Report' or, if 'suffix' is specified,
 
 If the third argument is not given, the format is 'html'
 If only one argument is specified, suffix will be '' and format will be 'html'
+
+The fourth argument is the template to be used. EAt the moment, only LEEF_1 and LEEF_2 
+is supported. Defaults to LEEF_1
 
 This command requires that R and the package 'LEEF.analysis' is installed. 
 
@@ -29,11 +32,11 @@ fi
 DB=$1
 SUFFIX="${2:-}"
 FORMAT="${3:-html}"
-
+TEMPLATE="${4:LEEF_2}"
 echo 
 echo "RRD db : $DB"
 echo "SUFFIX : $SUFFIX"
 echo "Format : $FORMAT"
 echo 
 
-Rscript -e "library(LEEF.analysis); report_diagnostic('$DB', '$SUFFIX', '$FORMAT');"
+Rscript -e "library(LEEF.analysis); report_diagnostic('$DB', '$TEMPLATE', '$SUFFIX', '$FORMAT');"
