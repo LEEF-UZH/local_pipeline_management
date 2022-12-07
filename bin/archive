@@ -3,8 +3,7 @@
 usage="
 Usage: `basename $0` [options]
        
-Move all content in the folder 'LEEF/3.archived.data' to the container 'LEEF.archived.data'
-and copy the content of the folder 'LEEF/9.backend' to the container 'LEEF.backend' 
+Move all content in the folder 'LEEF/3.archived.data' to the container 'LEEF_2.archived.data'
 on the S3 Swift Object Storage. The transfer uses the 'swift' command.
 
 Options:
@@ -53,16 +52,16 @@ echo "####################################";
   $FROM_ARCHIVED &&
 sudo rm -rf $FROM_ARCHIVED;
 
-echo "####################################";
-echo "## uploading $FROM_BACKEND";
-echo "####################################";
-/home/ubuntu/.local/bin/swift upload \
-  --changed \
-  --skip-identical \
-  --segment-size 1073741824 \
-  $TO_BACKEND_CONTAINER \
-  $FROM_BACKEND \
-  --object-name LEEF.RRD.$(date +%Y-%m-%d).sqlite &&
+# echo "####################################";
+# echo "## uploading $FROM_BACKEND";
+# echo "####################################";
+# /home/ubuntu/.local/bin/swift upload \
+#   --changed \
+#   --skip-identical \
+#   --segment-size 1073741824 \
+#   $TO_BACKEND_CONTAINER \
+#   $FROM_BACKEND \
+#   --object-name LEEF.RRD.$(date +%Y-%m-%d).sqlite &&
 
 echo "####################################";
 echo "## done";
