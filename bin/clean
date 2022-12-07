@@ -14,6 +14,7 @@ This will *delete* the following folders in the LEEF folder:
 	
 Options:
   -h, --help            Print short help message and exit
+  BATCH					Do not ask for confirmation	
 
 "
 
@@ -45,8 +46,15 @@ This will *delete* the following folders in the LEEF folder:
 
 on the pipeline server in the LEEF folder.
 "
-read -r -p "Are You Sure you want to delete these directories? Type DELETE to confirm " input
-echo $input
+
+if [[ "$1" != "BATCH" ]]; then
+	read -r -p "Are you Sure you want to delete these directories? Type DELETE to confirm " input
+	echo $input
+else
+ 	ssh $USER@$SERVER -t "rm -rf ./LEEF/00.general.parameter ./LEEF/0.raw.data ./LEEF/1.pre-processed.data ./LEEF/log* ./LEEF/2.extracted.data"
+ 	ssh $USER@$SERVER -t "sudo rm -f /mnt/LEEF_IEU/1.InProgress/*"
+ 	exit
+fi
 
 case $input in
 	DELETE)

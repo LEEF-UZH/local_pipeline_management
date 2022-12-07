@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage="
-Usage: `basename $0` [options] from
+Usage: `basename $0` [options] from [BATCH]
 
 Prepare the pipeline by populating the LEEF folder with the data in the 'from' folder on the LEEF drive.
 
@@ -24,7 +24,7 @@ into the LEEF pipeline, and create a directory
 
 Options:
   -h, --help            Print short help message and exit
-
+  BATCH					Do not ask for confirmation
 "
 
 if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
@@ -35,7 +35,7 @@ fi
 ############
 ############
 
-$($(dirname "$0")/clean)
+$($(dirname "$0")/clean "$2") 
 
 FROM=/mnt/LEEF_IEU/$1
 
@@ -58,8 +58,15 @@ The following folders will be COPIED in the LEEF folder:
 on the pipeline server in the LEEF folder.
 "
 
-read -r -p "Are You Sure you want to COPY these directories? Type COPY to confirm " input
-echo $input
+if [[ "$1" != "BATCH" ]]; then
+	read -r -p "Are you Sure you want to COPY these directories? Type COPY to confirm " input
+	echo $input
+else
+ 	ssh $USER@$SERVER -t "rsync --verbose --archive --progress $FROM/00.general.parameter ./LEEF/"
+ 	ssh $USER@$SERVER -t "rsync --verbose --archive --progress $FROM/0.raw.data ./LEEF/"
+ 	ssh $USER@$SERVER -t "sudo touch /mnt/LEEF_IEU/1.InProgress/$1"
+ 	exit
+fi
 
 case $input in
 	COPY)
