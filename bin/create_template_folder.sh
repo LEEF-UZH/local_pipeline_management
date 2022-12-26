@@ -70,11 +70,11 @@ if ! [[ $YYYY =~ ^[0-9]+$ ]]; then
    echo "ERROR - YYYY (the year) has to consists of four digits!" ; exit 1
 fi
 
-if [[ $YYYY > 2022 ]]; then
+if [[ $YYYY > 2023 ]]; then
    echo "ERROR - YYYY (the year) can not be larger than 2022!" ; exit 1
 fi
 
-if [[ $YYYY < 2021 ]]; then
+if [[ $YYYY < 2022 ]]; then
    echo "ERROR - YYYY (the year) can not be larger than 2021!" ; exit 1
 fi
 
