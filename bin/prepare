@@ -58,7 +58,7 @@ The following folders will be COPIED in the LEEF folder:
 on the pipeline server in the LEEF folder.
 "
 
-if [[ "$1" != "BATCH" ]]; then
+if [[ "$2" != "BATCH" ]]; then
 	read -r -p "Are you Sure you want to COPY these directories? Type COPY to confirm " input
 	echo $input
 else
